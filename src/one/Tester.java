@@ -5,6 +5,7 @@ import one.dao.XMLPersonDao;
 import one.exception.DaoException;
 import one.dao.FilePersonDao;
 import one.personModel.Person;
+import two.JsonDao;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -30,6 +31,9 @@ public class Tester {
         persistanceStrategy.setPersonDao(new XMLPersonDao());
         persistanceStrategy.writePersons(personList);//XML
 
+        persistanceStrategy.setPersonDao(new JsonDao());
+        persistanceStrategy.writePersons(personList);//JSON
+
      persistanceStrategy.setPersonDao(new FilePersonDao());
         List<Person> ucitanePersone =persistanceStrategy.readPersons();
         ucitanePersone.forEach(System.out::println);
@@ -43,5 +47,10 @@ public class Tester {
         persistanceStrategy.setPersonDao(new XMLPersonDao());
         List<Person> xmlPersone=persistanceStrategy.readPersons();
         xmlPersone.forEach(System.out::println);
+        System.out.println();
+
+        persistanceStrategy.setPersonDao(new JsonDao());
+        List<Person> jsonPersone=persistanceStrategy.readPersons();
+        jsonPersone.forEach(System.out::println);
 }
 }
